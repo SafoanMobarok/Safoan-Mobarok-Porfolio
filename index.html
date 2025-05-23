@@ -136,12 +136,16 @@
       margin-top: 50px;
     }
     .section h3 {
-      font-size: 1.5em;
-      color: var(--primary);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+  font-size: 1.5em;
+  color: var(--primary);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Increased space */
+}
+.section h3::before {
+  content: '🔹';
+}
     }
     .section h3::before {
       content: '🔹';
