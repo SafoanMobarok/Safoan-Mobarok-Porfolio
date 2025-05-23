@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Safoan Mobarok – Strategic HR & Talent Analyst</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👤</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0077b5;
+      --primary-light: #d4ecff;
+      --dark: #2d3748;
+      --light: #fff;
+      --gray: #888;
+      --bg-light: #e0f7fa;
+      --bg-medium: #e3f2fd;
+      --bg-accent: #f3e5f5;
+      --section-bg: rgba(255, 255, 255, 0.96);
+      --card-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      --card-border: 5px solid #0077b5;
+      --timeline-dot: #0077b5;
+      --timeline-line: #d4ecff;
+      --skill-bg: #e3f2fd;
+      --skill-fill: #0077b5;
+      --skill-text: #005f8d;
+    }
+    .dark-mode {
+      --primary: #4da6ff;
+      --primary-light: #00274d;
+      --dark: #e2e8f0;
+      --light: #1a202c;
+      --gray: #a0aec0;
+      --bg-light: #1a202c;
+      --bg-medium: #2d3748;
+      --bg-accent: #4a5568;
+      --section-bg: rgba(26, 32, 44, 0.96);
+      --card-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      --card-border: 5px solid #4da6ff;
+      --timeline-dot: #4da6ff;
+      --timeline-line: #2d3748;
+      --skill-bg: #2d3748;
+      --skill-fill: #4da6ff;
+      --skill-text: #e2e8f0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(270deg, var(--bg-light), var(--bg-medium), var(--bg-accent));
+      background-size: 600% 600%;
+      animation: animatedGradient 18s ease infinite;
+      color: var(--dark);
+      position: relative;
+      min-height: 100vh;
+      transition: background 0.4s, color 0.4s;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3), transparent 70%),
+                  url('https://www.transparenttextures.com/patterns/cubes.png');
+      opacity: 0.1;
+      z-index: -1;
+    }
+    .dark-mode body::before {
+      background: radial-gradient(circle at 20% 20%, rgba(0,0,0,0.3), transparent 70%),
+                  url('https://www.transparenttextures.com/patterns/cubes.png');
+      opacity: 0.1;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 60px auto;
+      background: var(--section-bg);
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(10px);
+      position: relative;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+
+    /* Hero Animation */
+    header {
+      display: flex;
+      align-items: center;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 30px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary);
+      margin-right: 30px;
+      animation: fadeIn 0.8s ease-in-out 0.2s forwards;
+      opacity: 0;
+    }
+
+    h1 {
+      font-size: 2.3em;
+      color: var(--primary);
+      animation: fadeIn 0.8s ease-in-out 0.4s forwards;
+      opacity: 0;
+    }
+    .subtitle {
+      font-size: 1.1em;
+      margin-top: 6px;
+      color: var(--gray);
+      animation: fadeIn 0.8s ease-in-out 0.6s forwards;
+      opacity: 0;
+    }
+    .contact a {
+      color: var(--primary);
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: 600;
+      animation: fadeIn 0.8s ease-in-out 0.8s forwards;
+      opacity: 0;
+      transition: color 0.2s;
+    }
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      margin-top: 50px;
+    }
+    .section h3 {
+      font-size: 1.5em;
+      color: var(--primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section h3::before {
+      content: '🔹';
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 30px auto;
+    }
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 3px;
+      background-color: var(--timeline-line);
+      top: 0;
+      bottom: 0;
+      left: 31px;
+      z-index: 1;
+    }
+    .timeline-entry {
+      padding: 10px 40px;
+      position: relative;
+      background-color: transparent;
+      width: 100%;
+      margin-bottom: 15px;
+      transition: transform 0.2s;
+    }
+    .timeline-entry:hover {
+      transform: translateX(5px);
+    }
+    .timeline-entry::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      left: 21px;
+      background-color: var(--light);
+      border: 3px solid var(--timeline-dot);
+      border-radius: 50%;
+      z-index: 2;
+      top: 15px;
+    }
+    .timeline-entry h4 {
+      font-size: 1.1em;
+      color: var(--dark);
+      margin-bottom: 5px;
+    }
+    .timeline-entry p {
+      font-size: 0.96em;
+      color: var(--gray);
+      margin-bottom: 5px;
+    }
+    .date {
+      font-size: 0.85em;
+      color: var(--gray);
+    }
+
+    /* Skill Bars */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill {
+      width: 100%;
+      max-width: 300px;
+    }
+    .skill-name {
+      font-size: 0.9em;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+    .skill-bar {
+      height: 10px;
+      background: var(--skill-bg);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      background: var(--skill-fill);
+      border-radius: 5px;
+      transition: width 1s ease-in-out;
+      width: 0;
+    }
+    .skill-percent {
+      font-size: 0.8em;
+      color: var(--skill-text);
+      margin-top: 3px;
+    }
+
+    /* Badges */
+    .badge {
+      background: var(--primary-light);
+      color: var(--skill-text);
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: 500;
+      display: inline-block;
+      margin: 5px 10px 5px 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Case & Testimonial Boxes */
+    .case-box, .quote-box, .award-box {
+      background: var(--primary-light);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 5px solid var(--primary);
+      margin-bottom: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .case-box:hover, .quote-box:hover, .award-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    .case-box strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    /* Testimonial Carousel */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      height: 150px;
+    }
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 100%;
+    }
+    .carousel-item {
+      min-width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .carousel-controls {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .carousel-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gray);
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.2s, background 0.2s;
+    }
+    .carousel-indicator.active {
+      background: var(--primary);
+      opacity: 1;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: var(--section-bg);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: var(--primary);
+    }
+    .modal-title {
+      font-size: 1.3em;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    /* Dark Mode Toggle */
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: var(--light);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: background 0.2s;
+    }
+    .dark-mode-toggle:hover {
+      background: var(--skill-text);
+    }
+
+    /* Signature */
+    .signature {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 1.2em;
+      color: var(--primary);
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.9em;
+      color: var(--gray);
+    }
+
+    @media(max-width: 768px) {
+      header { flex-direction: column; text-align: center; }
+      .profile-pic { margin: 0 auto 20px; }
+      .timeline::after { left: 15px; }
+      .timeline-entry::after { left: 5px; }
+      .skills-container { justify-content: center; }
+    }
+    @keyframes animatedGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body>
+  <button class="dark-mode-toggle" aria-label="Toggle dark mode">🌓</button>
+
+  <div class="container">
+    <header>
+      <img src="safoan.jpg" alt="Safoan Mobarok" class="profile-pic"/>
+      <div>
+        <h1>Safoan Mobarok</h1>
+        <p class="subtitle">Strategic HR & Talent Analyst | MBA (HRM) | Ex-Nagad | Award-Winning Case Strategist</p>
+        <div class="contact">
+          <a href="mailto:safoan.anan@example.com">Email</a>
+          <a href="https://linkedin.com/in/safoan-anan">LinkedIn</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Experience -->
+    <section class="section">
+      <h3>Experience</h3>
+      <div class="timeline">
+        <div class="timeline-entry">
+          <h4>HR Intern – Nagad</h4>
+          <p class="date">Jan 2023 – Jun 2023</p>
+          <p>Supported KPI dashboards, payment operations, merchant management, and cross-functional HR campaigns. Contributed to strategic insights and employee feedback analysis.</p>
+        </div>
+        <div class="timeline-entry">
+          <h4>HR Associate – HR HelpLine BD</h4>
+          <p class="date">Jul 2022 – Dec 2022</p>
+          <p>Led 300+ interviews, managed job postings, screened CVs, and supervised employee onboarding. Recognized for communication excellence and structured documentation processes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section">
+      <h3>Education</h3>
+      <div class="timeline">
+        <div class="timeline-entry">
+          <h4>MBA in Human Resource Management</h4>
+          <p class="date">2023 – 2024</p>
+          <p>Bangladesh University of Professionals – GPA: 3.77</p>
+        </div>
+        <div class="timeline-entry">
+          <h4>BBA in Management</h4>
+          <p class="date">2019 – 2023</p>
+          <p>Bangladesh University of Professionals – GPA: 3.66</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section">
+      <h3>Skills</h3>
+      <div class="skills-container">
+        <div class="skill">
+          <div class="skill-name">Power BI & KPI Dashboards</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+          <div class="skill-percent">85%</div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">MySQL</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+          <div class="skill-percent">80%</div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Excel (Advanced)</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 95%"></div></div>
+          <div class="skill-percent">95%</div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">OKR Mapping</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 88%"></div></div>
+          <div class="skill-percent">88%</div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Strategic HR Planning</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 87%"></div></div>
+          <div class="skill-percent">87%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications & Courses -->
+    <section class="section">
+      <h3>Certifications & Courses</h3>
+      <div>
+        <span class="badge">HR Analytics – Coursera</span>
+        <span class="badge">MySQL – PW Skills</span>
+        <span class="badge">SPSS – Research Analytics</span>
+        <span class="badge">Strategic HR Planning (Certified)</span>
+      </div>
+    </section>
+
+    <!-- Case-Based Problem Solving -->
+    <section class="section">
+      <h3>Case-Based Problem Solving</h3>
+      <div class="case-box" onclick="openModal('advent-hr')">
+        <strong>Advent HR – BAT Bangladesh:</strong>
+        <p>Devised rural onboarding solution with gamified engagement and KPIs aligned to digital OKRs. Reduced onboarding time by 12% (model simulation).</p>
+      </div>
+      <div class="case-box" onclick="openModal('bizmaestro')">
+        <strong>BizMaestro – IBA DU:</strong>
+        <p>Created a dynamic HR analytics dashboard prototype with real-time metrics for talent scoring and bias reduction. Placed in national finals.</p>
+      </div>
+      <div class="case-box" onclick="openModal('export-strategy')">
+        <strong>Export Strategy – BUP Capstone (SME Farmers):</strong>
+        <p>Developed export pipeline with talent pooling + HRIS for mango farmers in Jessore. Designed QC reporting with Power BI, ready for NGO-backed pilot.</p>
+      </div>
+    </section>
+
+    <!-- Recognitions & Awards -->
+    <section class="section">
+      <h3>Recognitions & Awards</h3>
+      <div class="award-box">
+        🥇 Best Presenter – BUP Management PSD Session (2023)<br>
+        🎓 Academic Scholarship – Merit-based, awarded 2 consecutive terms<br>
+        🏅 Club Leadership – Admin Secretary, Human Resource & Leadership Club
+      </div>
+    </section>
+
+    <!-- References -->
+    <section class="section">
+      <h3>References</h3>
+      <div class="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item">
+            <div class="quote-box">
+              “Safoan’s dedication, professionalism, and analytical thinking set him apart from the rest. His contributions to HR HelpLine BD went beyond tasks — he brought innovation.”<br>
+              — <strong>Kamrul Hasan</strong>, Mentor at HR HelpLine BD
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="quote-box">
+              “During his time at Nagad, Safoan showed an impressive ability to translate complex problems into actionable strategies. His creative insights into data-driven HR added real value.”<br>
+              — <strong>Sadat Mainuddin</strong>, CDFP, UNCDF
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <div class="carousel-indicator active" onclick="goToSlide(0)"></div>
+          <div class="carousel-indicator" onclick="goToSlide(1)"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="signature">Safoan Mobarok</div>
+
+    <footer>
+      <p>© 2025 Safoan Mobarok | A portfolio designed with purpose and precision.</p>
+    </footer>
+  </div>
+
+  <!-- Modals -->
+  <div id="advent-hr-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('advent-hr')">×</span>
+      <h3 class="modal-title">Advent HR – BAT Bangladesh</h3>
+      <p><strong>Challenge:</strong> Rural onboarding was slow and engagement was low.</p>
+      <p><strong>Solution:</strong> Designed a gamified onboarding process with KPIs aligned to digital OKRs. Implemented a model simulation that reduced onboarding time by 12%.</p>
+      <p><strong>Outcome:</strong> Improved engagement and efficiency in rural talent acquisition.</p>
+    </div>
+  </div>
+  <div id="bizmaestro-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('bizmaestro')">×</span>
+      <h3 class="modal-title">BizMaestro – IBA DU</h3>
+      <p><strong>Challenge:</strong> Talent scoring was subjective and prone to bias.</p>
+      <p><strong>Solution:</strong> Built a dynamic HR analytics dashboard prototype with real-time metrics for objective talent scoring and bias reduction.</p>
+      <p><strong>Outcome:</strong> Placed in national finals and received recognition for innovation in HR tech.</p>
+    </div>
+  </div>
+  <div id="export-strategy-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('export-strategy')">×</span>
+      <h3 class="modal-title">Export Strategy – BUP Capstone (SME Farmers)</h3>
+      <p><strong>Challenge:</strong> SME mango farmers in Jessore lacked efficient talent and quality control systems.</p>
+      <p><strong>Solution:</strong> Developed an export pipeline with talent pooling and HRIS integration. Designed QC reporting with Power BI.</p>
+      <p><strong>Outcome:</strong> Ready for NGO-backed pilot, poised to improve export readiness and quality.</p>
+    </div>
+  </div>
+
+  <script>
+    // Dark Mode Toggle
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? '🌞' : '🌓';
+    });
+
+    // Testimonial Carousel
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+
+    function goToSlide(n) {
+      currentSlide = n;
+      updateCarousel();
+    }
+
+    function updateCarousel() {
+      const carouselInner = document.querySelector('.carousel-inner');
+      carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
+      indicators.forEach((ind, i) => {
+        ind.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    // Auto-rotate carousel
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateCarousel();
+    }, 6000);
+
+    // Modal Functions
+    function openModal(id) {
+      document.getElementById(`${id}-modal`).style.display = 'flex';
+    }
+    function closeModal(id) {
+      document.getElementById(`${id}-modal`).style.display = 'none';
+    }
+
+    // Animate skill bars on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.width = entry.target.getAttribute('data-width') || entry.target.style.width;
+        }
+      });
+    });
+    document.querySelectorAll('.skill-fill').forEach(bar => {
+      bar.setAttribute('data-width', bar.style.width);
+      bar.style.width = '0';
+      observer.observe(bar);
+    });
+
+    // Scroll Animation for Timeline Entries
+    const timelineEntries = document.querySelectorAll('.timeline-entry');
+    const entryObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.1 });
+    timelineEntries.forEach(el => entryObserver.observe(el));
+  </script>
+</body>
+</html>
