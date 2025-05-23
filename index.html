@@ -168,30 +168,35 @@
       z-index: 1;
     }
     .timeline-entry {
-  padding: 10px 0 10px 70px; /* top, right, bottom, left */
+  padding: 10px 0 10px 70px;
   position: relative;
-  /* ... */
+  background-color: transparent;
+  width: 100%;
+  margin-bottom: 15px;
+  transition: transform 0.2s;
 }
-      background-color: transparent;
-      width: 100%;
-      margin-bottom: 15px;
-      transition: transform 0.2s;
-    }
-    .timeline-entry:hover {
-      transform: translateX(5px);
-    }
-    .timeline-entry::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      left: 21px;
-      background-color: var(--light);
-      border: 3px solid var(--timeline-dot);
-      border-radius: 50%;
-      z-index: 2;
-      top: 15px;
-    }
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background-color: var(--timeline-line);
+  top: 0;
+  bottom: 0;
+  left: 35px;
+  z-index: 1;
+}
+.timeline-entry::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 25px;
+  background-color: var(--light);
+  border: 3px solid var(--timeline-dot);
+  border-radius: 50%;
+  z-index: 2;
+  top: 15px;
+}
     .timeline-entry h4 {
       font-size: 1.1em;
       color: var(--dark);
