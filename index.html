@@ -119,15 +119,18 @@
       animation: fadeIn 0.8s ease-in-out 0.6s forwards;
       opacity: 0;
     }
-    .contact a {
-      color: var(--primary);
-      margin-right: 15px;
-      text-decoration: none;
-      font-weight: 600;
-      animation: fadeIn 0.8s ease-in-out 0.8s forwards;
-      opacity: 0;
-      transition: color 0.2s;
-    }
+    .subtitle {
+  font-size: 1.1em;
+  margin-top: 6px;
+  color: var(--gray);
+  animation: fadeIn 0.8s ease-in-out 0.6s forwards;
+  opacity: 0;
+  margin-bottom: 12px;  /* Add this for extra gap */
+}
+
+.contact {
+  margin-top: 16px;     /* Add this for gap above links */
+}
     .contact a:hover {
       text-decoration: underline;
     }
@@ -463,34 +466,34 @@
       </div>
     </section>
 
-    <!-- Skills -->
-    <section class="section">
-      <h3>Skills</h3>
-      <div class="skills-container">
-        <div class="skill">
-          <div class="skill-name">Power BI & KPI Dashboards</div>
-          <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
-          <div class="skill-percent">85%</div>
-        </div>
-        <div class="skill">
-          <div class="skill-name">MySQL</div>
-          <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
-          <div class="skill-percent">80%</div>
-        </div>
-        <div class="skill">
-          <div class="skill-name">Excel (Advanced)</div>
-          <div class="skill-bar"><div class="skill-fill" style="width: 95%"></div></div>
-          <div class="skill-percent">95%</div>
-        </div>
+<!-- Skills -->
+<section class="section">
+  <h3>Skills</h3>
+  <div class="skills-container">
+    <div class="skill">
+      <div class="skill-name">Power BI</div>
+      <div class="skill-bar"><div class="skill-fill" style="width: 60%"></div></div>
+      <div class="skill-percent">60%</div>
+    </div>
+    <div class="skill">
+      <div class="skill-name">SQL</div>
+      <div class="skill-bar"><div class="skill-fill" style="width: 30%"></div></div>
+      <div class="skill-percent">30%</div>
+    </div>
+    <div class="skill">
+      <div class="skill-name">Excel (Advanced)</div>
+      <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
+      <div class="skill-percent">75%</div>
+    </div>
         <div class="skill">
           <div class="skill-name">OKR Mapping</div>
-          <div class="skill-bar"><div class="skill-fill" style="width: 88%"></div></div>
-          <div class="skill-percent">88%</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 55%"></div></div>
+          <div class="skill-percent">55%</div>
         </div>
         <div class="skill">
           <div class="skill-name">Strategic HR Planning</div>
-          <div class="skill-bar"><div class="skill-fill" style="width: 87%"></div></div>
-          <div class="skill-percent">87%</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 55%"></div></div>
+          <div class="skill-percent">55%</div>
         </div>
       </div>
     </section>
@@ -510,16 +513,16 @@
     <section class="section">
       <h3>Case-Based Problem Solving</h3>
       <div class="case-box" onclick="openModal('advent-hr')">
-        <strong>Advent HR – BAT Bangladesh:</strong>
+        <strong>Battel of Minds – BAT Bangladesh:</strong>
         <p>Devised rural onboarding solution with gamified engagement and KPIs aligned to digital OKRs. Reduced onboarding time by 12% (model simulation).</p>
       </div>
       <div class="case-box" onclick="openModal('bizmaestro')">
-        <strong>BizMaestro – IBA DU:</strong>
+        <strong>Biz-HR – IBA JU:</strong>
         <p>Created a dynamic HR analytics dashboard prototype with real-time metrics for talent scoring and bias reduction. Placed in national finals.</p>
       </div>
       <div class="case-box" onclick="openModal('export-strategy')">
         <strong>Export Strategy – BUP Capstone (SME Farmers):</strong>
-        <p>Developed export pipeline with talent pooling + HRIS for mango farmers in Jessore. Designed QC reporting with Power BI, ready for NGO-backed pilot.</p>
+        <p>Created a data-driven export plan for Jessore mango farmers, using Power BI for quality control. The scalable, sustainable solution was recognized by BUP.</p>
       </div>
     </section>
 
